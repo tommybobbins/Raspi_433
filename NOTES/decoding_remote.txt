@@ -1,0 +1,36 @@
+117 dots between signals@44kHz
+Gap = 2.18575 2.18840
+2 = 12 points on peak 14 between 12 points on peak
+1 = 12 points on peak
+3 = 12 points on peak 11 between 12 points on peak 11 between 12 points on peak
+1ON =  1gap22213131232221312231313123 213 2221
+1OFF = 1gap22213131232221312231313123 222 2221
+2ON =  1gap22213131232221312231313123 213 2212
+2OFF = 1gap22213131232221312231313123 222 2212
+3ON =  1gap22213131232221312231313123 213 2131
+3OFF = 1gap22213131232221312231313123 222 2131
+       1gap22213131232221312231313123 222 2131
+3OFF =  1gap
+
+44100 samples in a second 
+1 sample = 2.26757369615e-05 = 22.676 us (MICROSECONDS) per sample
+10 = 227us
+12 = 270us
+15 = 340us
+55 = 1247us
+115 = 2608us
+
+ON 1
+1gap= 15 samples ON 115 samples OFF
+2 = 16 samples ON 7 samples OFF 16 samples ON  53 samples OFF
+2 = 14 samples ON 10 samples OFF 14 samples ON 57 samples OFF
+2 = 15 samples ON 10 samples OFF 15 samples ON 54 samples OFF
+1 = 16 samples ON 56 samples OFF
+3 = 14 samples ON 10 samples OFF 12 samples ON 14 samples OFF 8 samples ON 57 OFF
+3 = 12 ON 12 OFF 12 ON 12 OFF 12 ON 57 OFF
+
+1gap = 14 samples ON 166 samples OFF
+2 = 16 samples ON 17 OFF 15 samples ON 55 samples OFF
+2 = 2 = 16 samples ON 17 OFF 15 samples ON 55 samples OFF
+2 = 
+
