@@ -4,7 +4,7 @@ CC=gcc
 CFLAGS=-l bcm2835
 DEPS=pattern.c
 
-all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy heating toggle
+all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton
 
 toggle: toggle.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
@@ -30,8 +30,10 @@ masteron: master_on.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
 masteroff: master_off.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-heating: heating.c
+bgas: bgas.c
+	$(CC) -l rt -o $@ $< $(CFLAGS)
+drayton: drayton.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
 
 clean:
-	rm -rf 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy heating toggle
+	rm -rf 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton
