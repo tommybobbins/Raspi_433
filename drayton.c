@@ -40,7 +40,7 @@ char *spi0_mem, *spi0_map;
 int sampletime;
 int standard_unit;
 
-#define STANDARD_UNIT 23 //Units are 23/46 sampletimes long
+#define STANDARD_UNIT 22 //Units are 22/44 sampletimes long
 #define SAMPLE_TIME 20 //22.67 microseconds
 #define UNIT_INTERVAL (STANDARD_UNIT*SAMPLE_TIME)
 
@@ -137,6 +137,7 @@ if (!(on_or_off))
 	short_off();
 	long_on();
 	long_off();
+	short_off();
 
 	short_on();
 	short_off();
