@@ -50,7 +50,7 @@ void singlet()
         usleep(231);
         GPIO_SET = 1<<g;
         usleep(1250);
-	printf("1");
+//	printf("1");
 }
 //1= 15 samples ON, 55 samples OFF
 //2= 15 samples ON, 13 samples OFF, 15 samples ON, 55 samples OFF
@@ -68,7 +68,7 @@ void doublet()
         usleep(231);
         GPIO_SET = 1<<g;
         usleep(1250);
-	printf("2");
+//	printf("2");
 }
 
 //3 = 15 samples ON, 12 samples OFF, 15 samples ON, 12 samples OFF, 15 samples ON, 55 samples OFF
@@ -88,7 +88,7 @@ void triplet()
         usleep(231);
         GPIO_SET = 1<<g;
         usleep(1250);
-	printf("3");
+//	printf("3");
 //Divide all numbers by
 //1.23529411765
 //10 = 227us = 184us
@@ -118,7 +118,7 @@ void quadruplet()
         usleep(231);
         GPIO_SET = 1<<g;
         usleep(1250);
-	printf("4");
+//	printf("4");
 }
 
 
@@ -146,7 +146,7 @@ void quintuplet()
         usleep(231);
         GPIO_SET = 1<<g;
         usleep(1250);
-	printf("5");
+//	printf("5");
 }
 
 //Divide all numbers by
@@ -166,7 +166,7 @@ void intro_1()
         usleep(847);
         GPIO_SET = 1<<g;
         usleep(300);
-	printf("1");
+//	printf("1");
 }
 void intro_0()
 {
@@ -176,6 +176,6 @@ void intro_0()
         usleep(253);
         GPIO_SET = 1<<g;
         usleep(970);
-	printf("0");
+//	printf("0");
 }
 
