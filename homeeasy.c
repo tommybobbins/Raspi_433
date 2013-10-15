@@ -237,7 +237,7 @@ void setup_io()
 void chapter1_set1 () {
 	singlet();
         usleep(1200);
-	printf("1long"); 
+//	printf("1long"); 
 //1 long sleep 
 	doublet();
 	doublet();
@@ -272,7 +272,7 @@ void chapter1_set1 () {
 void chapter1_set2 () {
 	singlet();
         usleep(1200);
-	printf("1long"); 
+//	printf("1long"); 
 //1 long sleep 
 	doublet();
 	doublet();

@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
         intro_0();
         intro_1();
         intro_0();
-	printf("\n");
+//	printf("\n");
 	}
 /////////////////////////////End of Intro
 //120 samples
@@ -165,17 +165,17 @@ int main(int argc, char *argv[])
 	usleep(8000);
 
 	singlet();
-	printf("\n");
+//	printf("\n");
 	usleep(2000);
 	chapter_1();
 	usleep(8000);
 	singlet();
-	printf("\n");
+//	printf("\n");
 	usleep(2000);
         chapter_1();
 	usleep(8000);
 	singlet();
-	printf("\n");
+//	printf("\n");
 	usleep(8000);
 
 
@@ -216,7 +216,7 @@ int main(int argc, char *argv[])
 		intro_1();	
 		intro_0();	
 	        usleep(8000);
-		printf("\n");
+//		printf("\n");
 
 	}	
 
@@ -328,7 +328,7 @@ void chapter_1()
         singlet();
         doublet();
         doublet();
-	printf("\n");
+//	printf("\n");
 }
 
 void chapter_2(){
@@ -374,5 +374,5 @@ void chapter_2(){
 	singlet();
 	singlet();
 	doublet();
-	printf("\n");
+//	printf("\n");
 }	

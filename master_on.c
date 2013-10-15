@@ -325,7 +325,7 @@ void chapter_1()
         doublet();
         doublet();
         singlet();
-	printf("\n");
+//	printf("\n");
 }
 
 void chapter_2(){
@@ -373,5 +373,5 @@ void chapter_2(){
 	singlet();
 	singlet();
 	singlet();
-	printf("\n");
+//	printf("\n");
 }	

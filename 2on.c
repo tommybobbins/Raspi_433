@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         intro_0();
         intro_1();
         intro_0();
-	printf("\n");
+	//printf("\n");
 	}
 	usleep(2000);
 	chapter_1();
@@ -158,20 +158,20 @@ int main(int argc, char *argv[])
         chapter_1();
 	usleep(8000);
 	singlet();
-	printf("\n");
+	//printf("\n");
 	usleep(8000);
 
 
 	chapter_2();
-	printf("\n");
+	//printf("\n");
 	usleep(8800);
 
 	chapter_2();
-	printf("\n");
+	//printf("\n");
 	usleep(8000);
 
 	chapter_2();
-	printf("\n");
+	//printf("\n");
 	usleep(8000);
 
 //0100000100010100000101010
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
 		intro_1();	
 		intro_0();	
 	        usleep(8000);
-		printf("\n");
+		//printf("\n");
 
 	}	
 
@@ -351,5 +351,5 @@ void chapter_2(){
 	singlet();
 	doublet();
 	singlet();
-	printf("\n");
+	//printf("\n");
 }	
