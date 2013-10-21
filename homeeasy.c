@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
    
  if ((plug<=4) && (plug>=1))
   {
-    printf("set is %d, plug is %d switching %s\n",set,plug,on_or_off); 
+//    printf("set is %d, plug is %d switching %s\n",set,plug,on_or_off); 
     
   }
  else
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
 
 	if (set == 1){
 	chapter1_set1();
-	} else if (set ==2) {
+	} else if (set == 2) {
 	chapter1_set2();
 	} else {
 	chapter1_set1();
@@ -135,15 +135,15 @@ int main(int argc, char *argv[])
 	singlet();
 	triplet();
 
-	} else if (strcmp(on_or_off,"off")==0) {
+	} else if (strcmp(on_or_off,"off") == 0) {
 	doublet();
 	doublet();
 	doublet();
-	} else if (strcmp(on_or_off,"mon")==0) {
+	} else if (strcmp(on_or_off,"mon") == 0) {
 	singlet();
 	doublet();
 	triplet();
-	} else if (strcmp(on_or_off,"moff")==0) {
+	} else if (strcmp(on_or_off,"moff") == 0) {
 	singlet();
 	triplet();
 	doublet();
@@ -170,7 +170,7 @@ if (plug == 1){
 	doublet();
 	singlet();
 	doublet();
-} else if (plug ==3) {
+} else if (plug == 3) {
 	doublet();
 	singlet();
 	triplet();
