@@ -52,6 +52,7 @@ volatile unsigned *gpio;
 #define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
 
 void energenie_set1();
+void energenie_set2();
 void energenie_plug1();
 void energenie_plug2();
 void energenie_plug3();
@@ -128,6 +129,8 @@ int main(int argc, char *argv[])
            energenie_set1();
 	} else if (set == 1) {
            energenie_set1();
+	} else if (set == 2) {
+           energenie_set2();
 	} else {
            energenie_set1();
 	}
@@ -235,6 +238,29 @@ output_0();
 output_1();
 output_0();
 output_1();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+}
+
+void energenie_set2 (){
+output_1();
+output_0();
+output_1();
+output_1();
+output_1();
+output_1();
+output_1();
+output_1();
+output_0();
+output_0();
+output_0();
+output_1();
+output_0();
+output_0();
+output_0();
 output_0();
 output_0();
 output_0();
