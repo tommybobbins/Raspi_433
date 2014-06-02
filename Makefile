@@ -4,7 +4,7 @@ CC=gcc
 CFLAGS=-l bcm2835
 DEPS=pattern.c
 
-all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton
+all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie
 
 toggle: toggle.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
@@ -33,6 +33,9 @@ masteroff: master_off.c pattern.c
 bgas: bgas.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
 drayton: drayton.c
+	$(CC) -l rt -o $@ $< $(CFLAGS)
+
+energenie: energenie.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
 
 clean:
