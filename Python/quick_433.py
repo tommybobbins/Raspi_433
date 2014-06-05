@@ -68,4 +68,9 @@ def main():
      GPIO.cleanup()
 
 if __name__ == "__main__":
-    main()
+    try: 
+        main()
+    except (KeyboardInterrupt, SystemExit):
+        print ("Thanks. Goodbye")
+        GPIO.cleanup()
+        exit();
