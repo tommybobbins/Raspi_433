@@ -9,22 +9,25 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
 
 #Calculate our on/offs up front
-twentyseven=27*sample_length
-seven=7*sample_length
+thirty=30*sample_length #27
+thirtyonepointfive=31.5*sample_length
+six=6*sample_length
+four=4*sample_length
+
 
 def one():
-    #On  = 1 = 25 samples high, 8 low
+    #On  = 1 = 31.5 samples high, 6 low
     GPIO.output(18,True)
-    time.sleep(twentyseven)
+    time.sleep(thirtyonepointfive)
     GPIO.output(18,False)
-    time.sleep(seven)
+    time.sleep(four)
 
 def zero():
-    #Off = 0 = 10 samples high, 26 low
+    #Off = 0 = 6 samples high, 30 low
     GPIO.output(18,True)
-    time.sleep(seven)
+    time.sleep(six)
     GPIO.output(18,False)
-    time.sleep(twentyseven)
+    time.sleep(thirty)
 
 def sequence(incoming_string):
     # Splits an incoming set of ones and zeros, runs the appropriate function
@@ -53,18 +56,18 @@ def sequence(incoming_string):
 
 def main(): 
      # 1,2,3,4 on
-     sequence('1011111100010000000011110')
-     sequence('1011111100010000000001110')
+#     sequence('1011111100010000000011110')
+#     sequence('1011111100010000000001110')
      sequence('1011111100010000000010110')
-     sequence('1011111100010000000000110')
+#     sequence('1011111100010000000000110')
      # 1,2,3,4 off
-     sequence('1011111100010000000011100')
-     sequence('1011111100010000000001100')
-     sequence('1011111100010000000010100')
-     sequence('1011111100010000000000100')
+#     sequence('1011111100010000000011100')
+#     sequence('1011111100010000000001100')
+#     sequence('1011111100010000000010100')
+#     sequence('1011111100010000000000100')
      # Master
-     sequence('1011111100010000000011010')
-     sequence('1011111100010000000011000')
+#     sequence('1011111100010000000011010')
+#     sequence('1011111100010000000011000')
      GPIO.cleanup()
 
 if __name__ == "__main__":
