@@ -115,6 +115,39 @@ if (!(on_or_off))
         bcm2835_delay(10);
 //OFF
 //1 1 1 1 1 2  1  2 1  1 1 1 1 1 1 2  1 1 1 1 1 1 1 1 2  1 1 2 1 1
+//Received 376 bytes  Taken from https://github.com/jimstudt/ook-decoder
+//0000207.445396s ###  30 pulses
+//num high   low      freq
+//  1  464uS    464uS  -10.776kHz
+//  2  564uS    456uS  -13.741kHz
+//  3  584uS    444uS  -17.123kHz
+//  4  552uS    464uS  -13.134kHz
+//  5  560uS    464uS  -12.500kHz
+//  6 1080uS    968uS  -13.194kHz
+//  7  560uS    972uS  -10.268kHz
+//  8 1076uS    460uS  -11.385kHz
+//  9  564uS    964uS  -14.184kHz
+// 10  564uS    484uS  -10.638kHz
+// 11  536uS    468uS  -11.194kHz
+// 12  552uS    464uS  -11.775kHz
+// 13  568uS    456uS  -13.204kHz
+// 14  560uS    468uS  -12.054kHz
+// 15  552uS    468uS  -11.775kHz
+// 16 1076uS    968uS  -13.708kHz
+// 17  560uS    464uS   -6.696kHz
+// 18  556uS    464uS  -15.288kHz
+// 19  564uS    460uS  -17.287kHz
+// 20  560uS    464uS  -10.714kHz
+// 21  568uS    456uS  -10.563kHz
+// 22  560uS    460uS  -13.839kHz
+// 23  560uS    464uS  -13.839kHz
+// 24  560uS    460uS  -11.607kHz
+// 25 1084uS    964uS  -12.223kHz
+// 26  556uS    464uS   -7.644kHz
+// 27  564uS    472uS  -13.741kHz
+// 28 1060uS    464uS  -12.736kHz
+// 29  576uS    448uS  -15.191kHz
+// 30  568uS   8004uS  -11.444kHz
 //ON
 //1 1 1 1 1 2  1  2 1  1 1 1 1 1 1 2  1 1 1 2  1 1 1 1 2  1 2 1 1
 	short_on();
