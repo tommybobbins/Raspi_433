@@ -181,22 +181,22 @@ if (!(on_or_off))
 
 
         //Send a Generic
+        pulse_send(420,420);
         pulse_send(450,420);
         pulse_send(450,420);
         pulse_send(450,420);
         pulse_send(450,420);
-        pulse_send(450,420);
-        pulse_send(920,920);
-        pulse_send(450,920);
+        pulse_send(920,840);
+        pulse_send(450,840);
         pulse_send(920,420);
-        pulse_send(450,920);
+        pulse_send(450,840);
         pulse_send(450,420);
         pulse_send(450,420);
         pulse_send(450,420);
         pulse_send(450,420);
         pulse_send(450,420);
         pulse_send(450,420);
-        pulse_send(920,920);
+        pulse_send(920,840);
         pulse_send(450,420);
         pulse_send(450,420);
         pulse_send(450,420);
@@ -208,33 +208,35 @@ if (!(on_or_off))
              pulse_send(450,420);
              pulse_send(450,420);
              pulse_send(450,420);
-             pulse_send(920,920);
+             pulse_send(920,840);
              pulse_send(450,420);
              pulse_send(450,420);
              pulse_send(920,420);
              pulse_send(450,420);
-             pulse_send(450,8000);
+             pulse_send(450,7000);
+//             printf("Finished sending off\n");
 //OFF
 //1 1 1 1 1 2  1 1 2 1 1
 	} else if (strcmp(on_or_off,"on")==0) {
-             pulse_send(920,920);
+             pulse_send(920,840);
              pulse_send(450,420);
              pulse_send(450,420);
              pulse_send(450,420);
              pulse_send(450,420);
-             pulse_send(920,920);
+             pulse_send(920,840);
              pulse_send(450,420);
              pulse_send(920,420);
              pulse_send(450,420);
              pulse_send(450,6000);
              pulse_send(28,8000);
+//            printf("Finished sending on\n");
 //ON
 //2  1 1 1 1 2  1 2 1 1
         } else {
 	
         }
 //        printf ("Sleeping\n");	
-        usleep(500000);
+        usleep(800000);
   }
 
   GPIO_CLR = 1<<g;
