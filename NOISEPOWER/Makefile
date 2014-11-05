@@ -34,9 +34,10 @@ bgas: bgas.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
 drayton: drayton.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
-
+light: light_socket.c
+	$(CC) -l rt -o $@ $< $(CFLAGS)
 energenie: energenie.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
 
 clean:
-	rm -rf 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton
+	rm -rf 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton light
