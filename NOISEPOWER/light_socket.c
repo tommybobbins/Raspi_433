@@ -11,6 +11,8 @@
 //  Modified tng@chegwin.org 26-Sep-2013
 //  Boiler on/off for Drayton/British Gas boilers
 //  Each boiler is individual and needs correctly sniffing
+//  Modified tng@chegwin.org 10-Nov-2014
+//  Code is just for light socket made by Biard 
 
 
 // Access from ARM Running Linux
