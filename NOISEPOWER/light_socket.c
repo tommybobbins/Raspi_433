@@ -171,10 +171,10 @@ if (!(on_or_off))
              pulse_send(750,5000);
 //            printf("Finished sending on\n");
 	} else if (strcmp(on_or_off,"2")==0) {
-//2 2  1 2 2  1  1 2  1 2 2 2 2  1 2 2 2 2 2 2 2  2  1 2 2
+//2 2  1 2 2  1  1 2  1 2 2 2 2  1 2 2 2 2 2 2 2  1  2 2 2
              usleep(450);
-             pulse_send(750,750);
-             pulse_send(220,275);
+             pulse_send(220,750);
+             pulse_send(750,275);
              pulse_send(750,275);
              pulse_send(750,5000);
 //            printf("Finished sending on\n");
