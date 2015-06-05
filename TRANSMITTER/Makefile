@@ -35,7 +35,6 @@ bgas: bgas.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
 drayton: drayton.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
-
 energenie: energenie.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
 
