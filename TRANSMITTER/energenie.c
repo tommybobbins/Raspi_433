@@ -220,22 +220,13 @@ output_0();
 void output_1()
 {
 /*668uS 168uS*/
-       int g;
-        g=18;
-	bcm2835_gpio_write(PIN, HIGH);
-        usleep(550);
-	bcm2835_gpio_write(PIN, LOW);
-        usleep(130);
+        pulse_send(550,130);
 //        printf("1");
 }
 
 void output_0()
 {
 /*256uS 580uS*/
-
-	bcm2835_gpio_write(PIN, HIGH);
-        usleep(140);
-	bcm2835_gpio_write(PIN, LOW);
-        usleep(540);
+        pulse_send(140,540);
 //        printf("0");
 }

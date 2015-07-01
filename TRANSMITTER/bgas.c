@@ -159,14 +159,3 @@ pulse_send(480,8000);
 
 /*256uS 580uS*/
 /*140 540*/
-
-void pulse_send (int pulseon, int pulseoff)
-{
-	bcm2835_gpio_write(PIN, HIGH);
-        usleep(pulseon);
-/*	printf("Pulseon %i \t" ,pulseon); */
-	bcm2835_gpio_write(PIN, LOW);
-        usleep(pulseoff);
-/*	printf("Pulseoff %i \n",pulseoff); */
-}
-

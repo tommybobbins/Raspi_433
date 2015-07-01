@@ -5,7 +5,7 @@ CFLAGS=-l bcm2835
 #CFLAGS_WPI=-l wiringPi
 DEPS=pattern.c
 
-all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie
+all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie light
 
 toggle: toggle.c
 	$(CC) -l rt -o $@ $< $(CFLAGS)
@@ -31,12 +31,14 @@ masteron: master_on.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
 masteroff: master_off.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-bgas: bgas.c
-	$(CC) -l rt -o $@ $< $(CFLAGS)
+bgas: bgas.c pattern.c
+	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS) 
 drayton: drayton.c
-	$(CC) -l rt -o $@ $< $(CFLAGS)
-energenie: energenie.c
-	$(CC) -l rt -o $@ $< $(CFLAGS)
+	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
+energenie: energenie.c pattern.c
+	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
+light: light.c pattern.c
+	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
 
 clean:
-	rm -rf 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton
+	rm -rf 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie light
