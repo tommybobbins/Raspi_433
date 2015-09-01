@@ -10,6 +10,7 @@
 
 void energenie_set1();
 void energenie_set2();
+void energenie_set3();
 void energenie_plug1();
 void energenie_plug2();
 void energenie_plug3();
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
   on_or_off = argv[3];  
 
 //test suitable
- if  ((set<=2) && (set>=0))
+ if  ((set<=3) && (set>=0))
   { 
 //    printf("set is %d, plug is %d switching %s\n",set, plug,on_or_off); 
   }
@@ -58,7 +59,7 @@ int main(int argc, char *argv[])
   }
  else
   {
-     printf("energenie [set] [plug] [on|off] where set is 1..2, plug is 1..4 or 9 for master and on or off\n");
+     printf("energenie [set] [plug] [on|off] where set is 1..3, plug is 1..4 or 9 for master and on or off\n");
      abort();
   } 
 
@@ -79,6 +80,8 @@ int main(int argc, char *argv[])
            energenie_set1();
 	} else if (set == 2) {
            energenie_set2();
+	} else if (set == 3) {
+           energenie_set3();
 	} else {
            energenie_set1();
 	}
@@ -117,6 +120,9 @@ int main(int argc, char *argv[])
         return 0;
 
 } // main
+
+/* Existing 4 Gang is set 4 */
+/* 11010011000010100000 111 10 */
 
 
 /*
@@ -158,6 +164,29 @@ void energenie_set2 (){
 output_1();
 output_0();
 output_1();
+output_1();
+output_1();
+output_1();
+output_1();
+output_1();
+output_0();
+output_0();
+output_0();
+output_1();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+}
+
+void energenie_set3 (){
+output_1();
+output_0();
+output_0();
 output_1();
 output_1();
 output_1();
