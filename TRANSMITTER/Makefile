@@ -6,36 +6,14 @@ CFLAGS=-l bcm2835
 DEPS=pattern.c
 
 install:
-     sudo cp -p energenie /usr/local/bin/
-     sudo cp -p homeeasy /usr/local/bin/
-     sudo cp -p drayton /usr/local/bin/
-     sudo cp -p bgas /usr/local/bin/
+	sudo cp -p energenie /usr/local/bin/
+	sudo cp -p homeeasy /usr/local/bin/
+	sudo cp -p drayton /usr/local/bin/
+	sudo cp -p bgas /usr/local/bin/
 
 all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie light
 
-toggle: toggle.c
-	$(CC) -l rt -o $@ $< $(CFLAGS)
 homeeasy: homeeasy.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-1on: 1on.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-1off: 1off.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-2on: 2on.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-2off: 2off.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-3on: 3on.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-3off: 3off.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-4on: 4on.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-4off: 4off.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-masteron: master_on.c pattern.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
-masteroff: master_off.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
 bgas: bgas.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS) 
@@ -47,4 +25,4 @@ light: light.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
 
 clean:
-	rm -rf 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie light
+	rm -rf homeeasy bgas drayton energenie light
