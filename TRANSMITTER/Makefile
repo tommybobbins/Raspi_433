@@ -5,9 +5,9 @@ CFLAGS=-l bcm2835
 #CFLAGS_WPI=-l wiringPi
 DEPS=pattern.c
 
-install:
+install: energenie light drayton bgas
 	sudo cp -p energenie /usr/local/bin/
-	sudo cp -p homeeasy /usr/local/bin/
+	sudo cp -p light /usr/local/bin/
 	sudo cp -p drayton /usr/local/bin/
 	sudo cp -p bgas /usr/local/bin/
 
