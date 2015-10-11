@@ -5,6 +5,12 @@ CFLAGS=-l bcm2835
 #CFLAGS_WPI=-l wiringPi
 DEPS=pattern.c
 
+install:
+     sudo cp -p energenie /usr/local/bin/
+     sudo cp -p homeeasy /usr/local/bin/
+     sudo cp -p drayton /usr/local/bin/
+     sudo cp -p bgas /usr/local/bin/
+
 all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie light
 
 toggle: toggle.c
