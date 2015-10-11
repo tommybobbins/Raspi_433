@@ -4,17 +4,33 @@ CC=gcc
 CFLAGS=-l bcm2835
 #CFLAGS_WPI=-l wiringPi
 DEPS=pattern.c
+BINDIR ?=/usr/local/bin/
+CONFIGDIR ?=/etc
+CONFIGURE ?=./configure
+MAKE_INSTALL ?=sudo make install
+AUTOMAKE ?= automake --add-missing
+ACLOCAL ?= aclocal
+MAKE ?=make
 
-install: energenie light drayton bgas
+
+prep:
+	@cd /home/pi
+	sudo apt-get install automake
+	cd ../bcm2835-1.42 && $(CONFIGURE)
+	cd ../bcm2835-1.42 && $(ACLOCAL)
+	cd ../bcm2835-1.42 && $(AUTOMAKE)
+	cd ../bcm2835-1.42 && $(MAKE)
+	cd ../bcm2835-1.42 && $(MAKE_INSTALL)
+
+
+install: prep all
 	sudo cp -p energenie /usr/local/bin/
 	sudo cp -p light /usr/local/bin/
 	sudo cp -p drayton /usr/local/bin/
 	sudo cp -p bgas /usr/local/bin/
 
-all: 1on 1off 2on 2off 3on 3off 4on 4off masteron masteroff homeeasy toggle bgas drayton energenie light
+all: bgas drayton energenie light
 
-homeeasy: homeeasy.c
-	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
 bgas: bgas.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS) 
 drayton: drayton.c
@@ -25,4 +41,4 @@ light: light.c pattern.c
 	$(CC) -l rt -o $@ $< $(DEPS) $(CFLAGS)
 
 clean:
-	rm -rf homeeasy bgas drayton energenie light
+	rm -rf bgas drayton energenie light
