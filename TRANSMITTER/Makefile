@@ -16,11 +16,9 @@ MAKE ?=make
 prep:
 	@cd /home/pi
 	sudo apt-get install automake
-	cd ../bcm2835-1.42 && $(CONFIGURE)
-	cd ../bcm2835-1.42 && $(ACLOCAL)
-	cd ../bcm2835-1.42 && $(AUTOMAKE)
-	cd ../bcm2835-1.42 && $(MAKE)
-	cd ../bcm2835-1.42 && $(MAKE_INSTALL)
+	cd ../bcm2835-1.46 && $(CONFIGURE)
+	cd ../bcm2835-1.46 && $(MAKE)
+	cd ../bcm2835-1.46 && $(MAKE_INSTALL)
 
 
 install: prep all
