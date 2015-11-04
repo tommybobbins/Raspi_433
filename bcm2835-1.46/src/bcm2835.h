@@ -4,7 +4,7 @@
   
    Author: Mike McCauley
    Copyright (C) 2011-2013 Mike McCauley
-   $Id: bcm2835.h,v 1.18 2015/03/08 22:17:20 mikem Exp $
+   $Id: bcm2835.h,v 1.20 2015/03/31 04:55:41 mikem Exp mikem $
 */
 
 /*! \mainpage C library for Broadcom BCM 2835 as used in Raspberry Pi
@@ -23,7 +23,7 @@
   BCM 2835).
   
   The version of the package that this documentation refers to can be downloaded 
-  from http:  www.airspayce.com/mikem/bcm2835/bcm2835-1.42.tar.gz
+  from http://www.airspayce.com/mikem/bcm2835/bcm2835-1.46.tar.gz
   You can find the latest version at http://www.airspayce.com/mikem/bcm2835
   
   Several example programs are provided.
@@ -88,6 +88,24 @@
   bcm2835_st
   bcm2835_bsc0
   bcm2835_bsc1
+
+  \par Raspberry Pi 2 (RPI2)
+
+  For this library to work correctly on RPI2, you MUST have the device tree support enabled in the kernel.
+  You should also ensure you are using the latest version of Linux. The library has been tested on RPI2
+  with 2015-02-16-raspbian-wheezy and ArchLinuxARM-rpi-2 as of 2015-03-29.
+
+  When device tree suport is enabled, the file /proc/device-tree/soc/ranges will appear in the file system, 
+  and the bcm2835 module relies on its presence to correctly run on RPI2 (it is optional for RPI1). 
+  Without device tree support enabled and the presence of this file, it will not work on RPI2.
+
+  To enable device tree support:
+
+  \code
+  sudo raspi-config
+   under Advanced Options - enable Device Tree
+   Reboot.
+  \endcode
   
   \par Pin Numbering
   
@@ -179,6 +197,17 @@
   clock divider to be 16, and the RANGE to 1024. The pulse repetition frequency will be
   1.2MHz/1024 = 1171.875Hz.
   
+  \par SPI
+
+  In order for bcm2835 library SPI to work, you may need to disable the SPI kernel module using:
+
+  \code
+  sudo raspi-config
+   under Advanced Options - enable Device Tree
+   under Advanced Options - disable SPI
+   Reboot.
+  \endcode
+
   \par Real Time performance constraints
   
   The bcm2835 is a library for user programs (i.e. they run in 'userland'). 
@@ -372,6 +401,19 @@
 
   \version 1.42 Further improvements to memory barriers with the patient assistance and patches of tlhackque.<br>
 
+  \version 1.43 Fixed problems with compiling barriers on RPI 2 with Arch Linux and gcc 4.9.2. 
+  Reported and patched by Lars Christensen.<br>
+  Testing on RPI 2, with ArchLinuxARM-rpi-2-latest and 2015-02-16-raspbian-wheezy.<br>
+
+  \version 1.44 Added documention about the need for device tree to be enabled on RPI2.<br>
+  Improvements to detection of availablity of DMB instruction based on value of __ARM_ARCH macro.<br>
+
+  \version 1.45 Fixed an error in the pad group offsets that would prevent bcm2835_gpio_set_pad() 
+  and bcm2835_gpio_pad() working correctly with non-0 pad groups. Reported by Guido.
+
+  \version 1.46 2015-09-18
+           Added symbolic definitions for remaining pins on 40 pin GPIO header on RPi 2. <br>
+
   \author  Mike McCauley (mikem@airspayce.com) DO NOT CONTACT THE AUTHOR DIRECTLY: USE THE LISTS
 */
 
@@ -384,13 +426,12 @@
 
 #define BCM2835_VERSION 10042 /* Version 1.42 */
 
-/* RPi 2 is ARM v7, and has DMB instruction.
-   Older RPis are ARM v6 and don't, so a coprocessor instruction must be used.
-   The odd test is so any newer processors will use DMB.  I'm not sure, but assumed
-   that __ARM_ARCH_7_ implies __ARM_ARCH_6__.  So the test is:
-   if not a V6 machine (all RPis before RPi 2), use DMB.
+/* RPi 2 is ARM v7, and has DMB instruction for memory barriers.
+   Older RPis are ARM v6 and don't, so a coprocessor instruction must be used instead.
+   However, not all versions of gcc in all distros support the dmb assembler instruction even on conmpatible processors.
+   This test is so any ARMv7 or higher processors with suitable GCC will use DMB.
 */
-#if !( defined(__ARM_ARCH_6__) && !defined( __ARM_ARCH_7__ ) )
+#if __ARM_ARCH >= 7
 #define BCM2835_HAVE_DMB
 #endif
 
@@ -407,17 +448,20 @@
 /*! Speed of the core clock core_clk */
 #define BCM2835_CORE_CLK_HZ		250000000	/*!< 250 MHz */
 
-/*! On RPi2 with BCM2836, the base of the peripherals is read from a /proc file */
+/*! On RPi2 with BCM2836, and all recent OSs, the base of the peripherals is read from a /proc file */
 #define BMC2835_RPI2_DT_FILENAME "/proc/device-tree/soc/ranges"
-/*! On RPi2, offset into BMC2835_RPI2_DT_FILENAME for the peripherals base address */
+/*! Offset into BMC2835_RPI2_DT_FILENAME for the peripherals base address */
 #define BMC2835_RPI2_DT_PERI_BASE_ADDRESS_OFFSET 4
-/*! On RPi2, offset into BMC2835_RPI2_DT_FILENAME for the peripherals size address */
+/*! Offset into BMC2835_RPI2_DT_FILENAME for the peripherals size address */
 #define BMC2835_RPI2_DT_PERI_SIZE_OFFSET 8
 
 /*! Physical addresses for various peripheral register sets
   Base Physical Address of the BCM 2835 peripheral registers
-  Note this is different for the RPi2 BCM2836, where this isderived from /proc/device-tree/soc/ranges
+  Note this is different for the RPi2 BCM2836, where this is derived from /proc/device-tree/soc/ranges
+  If /proc/device-tree/soc/ranges exists on a RPi 1 OS, it would be expected to contain the
+  following numbers:
 */
+/*! Peripherals block base address on RPi 1 */
 #define BCM2835_PERI_BASE               0x20000000
 /*! Size of the peripherals block on RPi 1 */
 #define BCM2835_PERI_SIZE               0x01000000
@@ -655,6 +699,15 @@ typedef enum
     RPI_V2_GPIO_P1_23     = 11,  /*!< Version 2, Pin P1-23, CLK when SPI0 in use */
     RPI_V2_GPIO_P1_24     =  8,  /*!< Version 2, Pin P1-24, CE0 when SPI0 in use */
     RPI_V2_GPIO_P1_26     =  7,  /*!< Version 2, Pin P1-26, CE1 when SPI0 in use */
+    RPI_V2_GPIO_P1_29     =  5,  /*!< Version 2, Pin P1-29 */
+    RPI_V2_GPIO_P1_31     =  6,  /*!< Version 2, Pin P1-31 */
+    RPI_V2_GPIO_P1_32     = 12,  /*!< Version 2, Pin P1-32 */
+    RPI_V2_GPIO_P1_33     = 13,  /*!< Version 2, Pin P1-33 */
+    RPI_V2_GPIO_P1_35     = 19,  /*!< Version 2, Pin P1-35 */
+    RPI_V2_GPIO_P1_36     = 16,  /*!< Version 2, Pin P1-36 */
+    RPI_V2_GPIO_P1_37     = 26,  /*!< Version 2, Pin P1-37 */
+    RPI_V2_GPIO_P1_38     = 20,  /*!< Version 2, Pin P1-38 */
+    RPI_V2_GPIO_P1_40     = 21,  /*!< Version 2, Pin P1-40 */
 
     /* RPi Version 2, new plug P5 */
     RPI_V2_GPIO_P5_03     = 28,  /*!< Version 2, Pin P5-03 */
@@ -662,7 +715,7 @@ typedef enum
     RPI_V2_GPIO_P5_05     = 30,  /*!< Version 2, Pin P5-05 */
     RPI_V2_GPIO_P5_06     = 31,  /*!< Version 2, Pin P5-06 */
 
-    /* RPi B+ J8 header */
+    /* RPi B+ J8 header, also RPi 2 40 pin GPIO header */
     RPI_BPLUS_GPIO_J8_03     =  2,  /*!< B+, Pin J8-03 */
     RPI_BPLUS_GPIO_J8_05     =  3,  /*!< B+, Pin J8-05 */
     RPI_BPLUS_GPIO_J8_07     =  4,  /*!< B+, Pin J8-07 */
@@ -682,13 +735,13 @@ typedef enum
     RPI_BPLUS_GPIO_J8_26     =  7,  /*!< B+, Pin J8-26, CE1 when SPI0 in use */
     RPI_BPLUS_GPIO_J8_29     =  5,  /*!< B+, Pin J8-29,  */
     RPI_BPLUS_GPIO_J8_31     =  6,  /*!< B+, Pin J8-31,  */
-    RPI_BPLUS_GPIO_J8_32     =  12, /*!< B+, Pin J8-32,  */
-    RPI_BPLUS_GPIO_J8_33     =  13, /*!< B+, Pin J8-33,  */
-    RPI_BPLUS_GPIO_J8_35     =  19, /*!< B+, Pin J8-35,  */
-    RPI_BPLUS_GPIO_J8_36     =  16, /*!< B+, Pin J8-36,  */
-    RPI_BPLUS_GPIO_J8_37     =  26, /*!< B+, Pin J8-37,  */
-    RPI_BPLUS_GPIO_J8_38     =  20, /*!< B+, Pin J8-38,  */
-    RPI_BPLUS_GPIO_J8_40     =  21  /*!< B+, Pin J8-40,  */
+    RPI_BPLUS_GPIO_J8_32     = 12,  /*!< B+, Pin J8-32,  */
+    RPI_BPLUS_GPIO_J8_33     = 13,  /*!< B+, Pin J8-33,  */
+    RPI_BPLUS_GPIO_J8_35     = 19,  /*!< B+, Pin J8-35,  */
+    RPI_BPLUS_GPIO_J8_36     = 16,  /*!< B+, Pin J8-36,  */
+    RPI_BPLUS_GPIO_J8_37     = 26,  /*!< B+, Pin J8-37,  */
+    RPI_BPLUS_GPIO_J8_38     = 20,  /*!< B+, Pin J8-38,  */
+    RPI_BPLUS_GPIO_J8_40     = 21   /*!< B+, Pin J8-40,  */
 } RPiGPIOPin;
 
 /* Defines for SPI

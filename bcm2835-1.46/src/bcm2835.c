@@ -5,7 +5,7 @@
 //
 // Author: Mike McCauley
 // Copyright (C) 2011-2013 Mike McCauley
-// $Id: bcm2835.c,v 1.21 2015/03/08 23:13:25 mikem Exp mikem $
+// $Id: bcm2835.c,v 1.23 2015/03/31 04:55:41 mikem Exp mikem $
 */
 
 
@@ -122,16 +122,16 @@ uint32_t bcm2835_peri_read(volatile uint32_t* paddr)
        uint32_t ret;
 #ifdef BCM2835_HAVE_DMB
        __asm__(        "\
-  dmb                    \
-  ldr %[ret], [%[paddr]] \
-  dmb								\
+  dmb                    \n\
+  ldr %[ret], [%[paddr]] \n\
+  dmb			 \n\
 " : [ret] "=r" (ret) : [paddr] "r" (paddr) : "memory" );
 #else
        __asm__(            "\
-  mov r10,#0               \n			\
-  mcr p15,0,r10, c7, c10, 5\n			\
-  ldr %[ret], [%[paddr]]   \n			\
-  mcr p15,0,r10, c7, c10, 5\n					\
+  mov r10,#0                \n\
+  mcr p15,0,r10, c7, c10, 5 \n\
+  ldr %[ret], [%[paddr]]    \n\
+  mcr p15,0,r10, c7, c10, 5 \n\
 " : [ret] "=r" (ret) : [paddr] "r" (paddr) : "r10", "memory" );
 #endif
        return ret;
@@ -176,16 +176,16 @@ void bcm2835_peri_write(volatile uint32_t* paddr, uint32_t value)
 	/* Following code provides memory barriers before and after the write */
 #ifdef BCM2835_HAVE_DMB
        __asm__(        "\
-  dmb			   \
-  str %[value], [%[paddr]] \
-  dmb								\
+  dmb			   \n\
+  str %[value], [%[paddr]] \n\
+  dmb			   \n\
 " : : [paddr] "r" (paddr), [value] "r" (value) : "memory" );
 #else
        __asm__(            "\
-  mov r10,#0               \n			\
-  mcr p15,0,r10, c7, c10, 5\n			\
-  str %[value], [%[paddr]] \n			\
-  mcr p15,0,r10, c7, c10, 5\n						\
+  mov r10,#0                \n\
+  mcr p15,0,r10, c7, c10, 5 \n\
+  str %[value], [%[paddr]]  \n\
+  mcr p15,0,r10, c7, c10, 5 \n\
 " : : [paddr] "r" (paddr), [value] "r" (value) : "r10", "memory" );
 #endif
 
@@ -424,7 +424,7 @@ void bcm2835_gpio_pudclk(uint8_t pin, uint8_t on)
 /* Read GPIO pad behaviour for groups of GPIOs */
 uint32_t bcm2835_gpio_pad(uint8_t group)
 {
-    volatile uint32_t* paddr = bcm2835_pads + BCM2835_PADS_GPIO_0_27/4 + group*2;
+    volatile uint32_t* paddr = bcm2835_pads + BCM2835_PADS_GPIO_0_27/4 + group;
     return bcm2835_peri_read(paddr);
 }
 
@@ -434,7 +434,7 @@ uint32_t bcm2835_gpio_pad(uint8_t group)
 */
 void bcm2835_gpio_set_pad(uint8_t group, uint32_t control)
 {
-    volatile uint32_t* paddr = bcm2835_pads + BCM2835_PADS_GPIO_0_27/4 + group*2;
+    volatile uint32_t* paddr = bcm2835_pads + BCM2835_PADS_GPIO_0_27/4 + group;
     bcm2835_peri_write(paddr, control | BCM2835_PAD_PASSWRD);
 }
 
@@ -677,7 +677,7 @@ void bcm2835_spi_writenb(char* tbuf, uint32_t len)
     /* This is Polled transfer as per section 10.6.1
     // BUG ALERT: what happens if we get interupted in this section, and someone else
     // accesses a different peripheral?
-// Answer: an ISR is required to issue the required memory barriers.
+    // Answer: an ISR is required to issue the required memory barriers.
     */
 
     /* Clear TX and RX fifos */
@@ -1303,8 +1303,8 @@ int bcm2835_init(void)
 	return 1; /* Success */
     }
 
-    /* Figure out the base and size of the peripheral address block, based on whether we are on a RPI2 or not,
-    // using the device-tree
+    /* Figure out the base and size of the peripheral address block
+    // using the device-tree. Required for RPi2, optional for RPi 1
     */
     if ((fp = fopen(BMC2835_RPI2_DT_FILENAME , "rb")))
     {

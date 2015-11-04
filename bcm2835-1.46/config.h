@@ -14,7 +14,7 @@
 #define PACKAGE_NAME "bcm2835"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "bcm2835 1.42"
+#define PACKAGE_STRING "bcm2835 1.46"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "bcm2835"
@@ -23,7 +23,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.42"
+#define PACKAGE_VERSION "1.46"
 
 /* Version number of package */
-#define VERSION "1.42"
+#define VERSION "1.46"

@@ -224,20 +224,20 @@ OBJEXT = o
 PACKAGE = bcm2835
 PACKAGE_BUGREPORT = mikem@airspayce.com
 PACKAGE_NAME = bcm2835
-PACKAGE_STRING = bcm2835 1.42
+PACKAGE_STRING = bcm2835 1.46
 PACKAGE_TARNAME = bcm2835
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.42
+PACKAGE_VERSION = 1.46
 PATH_SEPARATOR = :
 RANLIB = ranlib
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
-VERSION = 1.42
-abs_builddir = /home/pi/PiThermostat/Raspi_433/bcm2835-1.42
-abs_srcdir = /home/pi/PiThermostat/Raspi_433/bcm2835-1.42
-abs_top_builddir = /home/pi/PiThermostat/Raspi_433/bcm2835-1.42
-abs_top_srcdir = /home/pi/PiThermostat/Raspi_433/bcm2835-1.42
+VERSION = 1.46
+abs_builddir = /home/pi/Raspi_433/bcm2835-1.46
+abs_srcdir = /home/pi/Raspi_433/bcm2835-1.46
+abs_top_builddir = /home/pi/Raspi_433/bcm2835-1.46
+abs_top_srcdir = /home/pi/Raspi_433/bcm2835-1.46
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -256,7 +256,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/pi/PiThermostat/Raspi_433/bcm2835-1.42/install-sh
+install_sh = ${SHELL} /home/pi/Raspi_433/bcm2835-1.46/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -754,7 +754,7 @@ uninstall-am:
 
 
 upload:
-	rsync -avz bcm2835-1.42.tar.gz doc/html/ www.airspayce.com:public_html/mikem/bcm2835
+	rsync -avz bcm2835-1.46.tar.gz doc/html/ www.airspayce.com:public_html/mikem/bcm2835
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
