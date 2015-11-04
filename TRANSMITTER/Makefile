@@ -10,12 +10,14 @@ CONFIGURE ?=./configure
 MAKE_INSTALL ?=sudo make install
 AUTOMAKE ?= automake --add-missing
 ACLOCAL ?= aclocal
+AUTOCONF ?= autoconf
 MAKE ?=make
 
 
 prep:
 	@cd /home/pi
 	sudo apt-get install automake
+	cd ../bcm2835-1.46 && $(AUTOCONF)
 	cd ../bcm2835-1.46 && $(CONFIGURE)
 	cd ../bcm2835-1.46 && $(MAKE)
 	cd ../bcm2835-1.46 && $(MAKE_INSTALL)
