@@ -11,6 +11,7 @@
 void energenie_set1();
 void energenie_set2();
 void energenie_set3();
+void energenie_set4();
 void energenie_plug1();
 void energenie_plug2();
 void energenie_plug3();
@@ -48,7 +49,7 @@ int main(int argc, char *argv[])
   }
  else
   {
-     printf("energenie [set] [plug] [on|off] where set is 0..2, plug is 1..4 and on or off\n");
+     printf("energenie [set] [plug] [on|off] where set is 1..4, plug is 1..4 and on or off\n");
      abort();
   }
    
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
   }
  else
   {
-     printf("energenie [set] [plug] [on|off] where set is 1..3, plug is 1..4 or 9 for master and on or off\n");
+     printf("energenie [set] [plug] [on|off] where set is 1..4, plug is 1..4 or 9 for master and on or off\n");
      abort();
   } 
 
@@ -82,6 +83,8 @@ int main(int argc, char *argv[])
            energenie_set2();
 	} else if (set == 3) {
            energenie_set3();
+	} else if (set == 4) {
+           energenie_set4();
 	} else {
            energenie_set1();
 	}
@@ -188,6 +191,29 @@ output_1();
 output_0();
 output_0();
 output_1();
+output_1();
+output_1();
+output_1();
+output_1();
+output_0();
+output_0();
+output_0();
+output_1();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+}
+
+void energenie_set4 (){
+output_1();
+output_0();
+output_0();
+output_0();
 output_1();
 output_1();
 output_1();
