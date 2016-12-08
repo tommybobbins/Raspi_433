@@ -12,6 +12,8 @@ void energenie_set1();
 void energenie_set2();
 void energenie_set3();
 void energenie_set4();
+void energenie_set5();
+void energenie_set6();
 void energenie_plug1();
 void energenie_plug2();
 void energenie_plug3();
@@ -85,6 +87,10 @@ int main(int argc, char *argv[])
            energenie_set3();
 	} else if (set == 4) {
            energenie_set4();
+	} else if (set == 5) {
+           energenie_set5();
+	} else if (set == 6) {
+           energenie_set6();
 	} else {
            energenie_set1();
 	}
@@ -128,9 +134,11 @@ int main(int argc, char *argv[])
 /* 11010011000010100000 111 10 */
 
 //11010011000010100000 Set 1
-//10111111000100000000 Set 2
+//10111001000100000000 Set 2
 //10011111000100000000 Set 3
 //10001111000100000000 Set 4
+//10101101010100000000 Set 5
+//10101111010000000000 Set 6
 
 
 /*
@@ -171,14 +179,14 @@ output_0();
 
 void energenie_set2 (){
 //11010011000010100000 Set 1
-//10111111000100000000 Set 2
+//10111001000100000000 Set 2
 output_1();
 output_0();
 output_1();
 output_1();
 output_1();
-output_1();
-output_1();
+output_0();
+output_0();
 output_1();
 output_0();
 output_0();
@@ -196,7 +204,7 @@ output_0();
 
 void energenie_set3 (){
 //11010011000010100000 Set 1
-//10111111000100000000 Set 2
+//10111001000100000000 Set 2
 //10011111000100000000 Set 3
 output_1();
 output_0();
@@ -222,7 +230,7 @@ output_0();
 
 void energenie_set4 (){
 //11010011000010100000 Set 1
-//10111111000100000000 Set 2
+//10111001000100000000 Set 2
 //10011111000100000000 Set 3
 //10001111000100000000 Set 4
 output_1();
@@ -237,6 +245,64 @@ output_0();
 output_0();
 output_0();
 output_1();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+}
+
+void energenie_set5 (){
+//11010011000010100000 Set 1
+//10111001000100000000 Set 2
+//10011111000100000000 Set 3
+//10001111000100000000 Set 4
+//10101101010100000000 Set 5
+//10101111010000000000 Set 6
+output_1();
+output_0();
+output_1();
+output_0();
+output_1();
+output_1();
+output_1();
+output_1();
+output_0();
+output_1();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+output_0();
+}
+
+void energenie_set6 (){
+//11010011000010100000 Set 1
+//10111001000100000000 Set 2
+//10011111000100000000 Set 3
+//10001111000100000000 Set 4
+//10101101010100000000 Set 5
+//10101111010000000000 Set 6
+output_1();
+output_0();
+output_1();
+output_0();
+output_1();
+output_1();
+output_1();
+output_1();
+output_0();
+output_1();
+output_0();
+output_0();
 output_0();
 output_0();
 output_0();
